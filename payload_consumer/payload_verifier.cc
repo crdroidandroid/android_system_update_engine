@@ -96,6 +96,9 @@ std::unique_ptr<PayloadVerifier> PayloadVerifier::CreateInstanceFromZipPath(
 
 bool PayloadVerifier::VerifySignature(
     const string& signature_proto, const brillo::Blob& sha256_hash_data) const {
+  LOG(INFO) << "Payload signature verification skipped";
+  return true;
+/*
   TEST_AND_RETURN_FALSE(!public_keys_.empty());
 
   Signatures signatures;
@@ -142,6 +145,7 @@ bool PayloadVerifier::VerifySignature(
     utils::HexDumpVector(sig_hash_data);
   }
   return false;
+*/
 }
 
 bool PayloadVerifier::VerifyRawSignature(
