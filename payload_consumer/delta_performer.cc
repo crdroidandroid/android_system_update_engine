@@ -663,12 +663,6 @@ bool DeltaPerformer::ParseManifestPartitions(ErrorCode* error) {
     auto generator = partition_update_generator::Create(boot_control_,
                                                         manifest_.block_size());
     std::vector<PartitionUpdate> untouched_static_partitions;
-    TEST_AND_RETURN_FALSE(
-        generator->GenerateOperationsForPartitionsNotInPayload(
-            install_plan_->source_slot,
-            install_plan_->target_slot,
-            touched_partitions,
-            &untouched_static_partitions));
     partitions_.insert(partitions_.end(),
                        untouched_static_partitions.begin(),
                        untouched_static_partitions.end());
